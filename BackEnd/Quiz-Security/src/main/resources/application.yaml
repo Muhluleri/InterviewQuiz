@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: enviro_security
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: security
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    locations: db/migration
+
+  security:
+    user:
+      name: hluli
+      password: hluli
+
+
+server:
+  port: 8082
+
+logging:
+  level:
+    org.org.hibernate.SQL: DEBUG
+
+springdoc:
+  api-docs:
+    path: /api-docs
