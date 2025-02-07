@@ -1,0 +1,291 @@
+$exam-page-width : var(--exam-page-width);
+$exam-page-height : var(--exam-page-height) ;
+
+$exam-border-size : var(--exam-border-size) ;
+
+$exam-header-height : var(--exam-header-height) ;
+$exams-buttons-padding : var(--exams-buttons-padding) ;
+$exams-button-height: var(--exams-button-height) ;
+$exams-buttons-height : var(--exams-buttons-height)  ;
+$exam-content-height : var(--exam-content-height ) ;
+$exam-content-width : var(--exam-content-page-width) ;
+$section-width : var(--exam-section-width) ;
+$navigation-width : var(--navigation-width);
+
+$section-padding : 16px ;
+
+.body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    .page{
+      border: $exam-border-size solid black;
+      align-self: center;
+      height: $exam-page-height;
+      width: $exam-page-width;
+      border-radius: 16px;
+      display: inline-flex;
+      flex-direction: column;
+
+      .header{
+        height : $exam-header-height;
+        padding : 0 16px 16px 16px;
+        display: inline-flex;
+        justify-content: space-around;
+        align-items: end;
+        border-bottom:  $exam-border-size solid #007900;
+
+        .details{
+          font-size: 24px;
+        }
+
+        .questionNo{
+          font-size: 36px;
+          font-weight: bold;
+        }
+
+      }
+
+      .content {
+        height : $exam-content-height;
+        display: inline-flex ;
+
+        .contentPage{
+          height : $exam-content-height;
+          width : $exam-content-width;
+          display: inline-flex;
+          overflow-x: hidden;
+          .section{
+            width: calc($section-width - (2 * $section-padding));
+            padding : 16px;
+
+            .pdf-viewer{
+              display: flex;
+              height: calc($exam-content-height - (2 * $section-padding));
+              width: calc($section-width - (2 * $section-padding));
+              .pdfFile{
+                height: calc($exam-content-height - (2 * $section-padding));
+                width: calc($section-width - (2 * $section-padding));
+              }
+            }
+
+            .written{
+              height: calc($exam-content-height - (2 * $section-padding) - (2 * 5px) - 19px);
+              width: calc($section-width - (2 * $section-padding) - (2 * 6px) );
+              .writtenAnswer{
+                height: calc($exam-content-height - (2 * $section-padding) - (2 * 5px)  - 19px );
+                width: calc($section-width - (2 * $section-padding)  - (2 * 6px) );
+                resize: none;
+                overflow-y: scroll ;
+
+                &:focus{
+                  outline: none;
+                }
+              }
+            }
+          }
+        }
+
+        .question-nav{
+          width : $navigation-width;
+          display: inline-flex;
+          justify-content: center;
+          padding-top: 16px;
+
+          span{
+            font-size: 32px;
+            font-weight: bold;
+
+            &:hover{
+              cursor: pointer;
+              color: #00c900;
+            }
+
+            &:active{
+              color: #008300;
+            }
+          }
+
+          .tracker{
+            width: calc((16px *2) + (5 * 58px) );
+          }
+        }
+
+      }
+
+      .buttons{
+        height: $exams-buttons-height;
+        display: inline-flex;
+        justify-content: end;
+        align-items: center;
+
+        .button{
+          height : $exams-button-height;
+          border: black 1px solid;
+          padding : 0 16px 0 16px;
+          margin : 0 16px 0 16px;
+          display: flex;
+          align-items: center;
+          border-radius: 16px;
+
+          &:hover{
+            cursor: pointer;
+            background-color: #3dc907;
+            color: white;
+          }
+
+          &:active{
+            background-color: #207200;
+          }
+        }
+      }
+    }
+}
+
+.options{
+  padding: 16px;
+
+  .optionBox{
+    font-size: 1.5rem;
+    background-color: rgb(247, 247, 247);
+    height: fit-content;
+
+    padding: 8px;
+    margin-bottom: 8px;
+    width: 500px;
+
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 4px 4px 2px black ;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    .option{
+      display: flex;
+      width: 450px;
+    }
+    .optionAnswer{
+      position: relative ;
+      field-sizing: normal;
+      resize: none;
+      background: transparent;
+      text-wrap: wrap;
+      z-index: 1;
+      width: 450px;
+      max-width: 450px;
+      height: calc(1rem + 2px);
+      color : black;
+      line-height: calc(1rem + 2px);
+      font-size: 1rem;
+      font-weight: 400;
+      border: none;
+      &:focus{
+        outline: none;
+      }
+
+    }
+
+    .tickbox{
+      margin-right: 8px;
+      margin-left: 8px;
+      height : 8px ;
+      width: 8px;
+      border-radius: 2px;
+      border: 2px solid black;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+
+  .optionBox.selected{
+    background-color: rgb(138, 218, 138);
+    box-shadow: 4px 4px 2px rgb(110, 173, 110);
+
+    .tickbox{
+      border-color: white;
+    }
+
+    .optionAnswer{
+
+      background-color: rgb(138, 218, 138);
+      color: white;
+      font-weight: 800;
+    }
+  }
+
+}
+
+.console{
+  border : solid 0.1px black;
+  width: calc($section-width - (18px * 2));
+  height: 400px;
+}
+
+.consoleResults{
+
+  margin-top: 8px;
+  padding: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  width: calc($section-width - 32px);
+  height : calc(400px - (8px * 2) - (19px + 16px ));
+  overflow: scroll;
+  border-radius: 16px;
+
+  .result{
+    margin-top: 16px;
+    padding: 8px;
+    border-radius: 16px ;
+    z-index: 1;
+    transition: 0.3s ease-in;
+    background-color: rgb(231, 231, 231);
+    width: calc($section-width - 32px - 16px - 16px - 2px);
+
+    &:hover{
+      transform: translateY(-5px);
+      box-shadow: 5px 5px 5px rgb(53, 255, 53);
+    }
+
+    .sHead{
+      font-size: 2rem;
+      line-height: calc(2rem + 8px);
+    }
+
+    .p{
+      display: inline-flex;
+      font-size: 1.2rem;
+      line-height: calc(1.2rem + 8px);
+
+      .pContent{
+        margin-left: 8px;
+      }
+
+
+    }
+
+
+
+
+    .rHead{
+      font-size: 1.2rem;
+      line-height: calc(1.2rem + 8px);
+    }
+
+    .rContent{
+      font-size: 1.3rem;
+      font-weight: 700;
+      line-height: calc(1.3rem + 8px);
+    }
+  }
+
+
+
+}
+
+

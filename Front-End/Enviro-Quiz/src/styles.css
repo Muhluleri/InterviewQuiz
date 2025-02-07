@@ -1,0 +1,108 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/*Works. Use this to set values for the ide*/
+/* const rootStyle = document.documentElement;*/
+/*console.log(getComputedStyle(rootStyle).getPropertyValue("--fire"));*/
+
+
+/*Variables for project*/
+:root{
+
+  /*Admin Navigation Variables*/
+  --icon-height: 4rem ;
+  --icon-width: 4rem ;
+  --icon-padding : 1rem ;
+  --half-icon-padding : calc(var(--icon-padding) / 2) ;
+  --total-nav-height : calc(var(--icon-height) + var(--icon-padding) + var(--half-icon-padding));
+  --underline-height: 3px ;
+
+  /*Question-Upload Variables*/
+  --upload-height : 75px ;
+  --page-padding : 32px ;
+  --page-height : calc(100vh - var(--total-nav-height) - var(--upload-height));
+  --page-width : calc(100vw) ;
+
+  --section-width : calc((var(--page-width) / 2) - (var(--page-padding)* 2));
+
+  --pdf-viewer-height : calc(var(--page-height) - 100px);
+  --pdf-viewer-width : calc(var(--section-width) - 75px);
+
+  /*IDE Variables*/
+  --line-height : 20px ;
+  --info-height : 32px ;
+
+  --code-editor-height : calc(var(--page-height) - var(--info-height)) ;
+  --line-area-width : 48px ;
+  --text-area-width : calc(var(--section-width) - var(--line-area-width)) ;
+  --ide-width : calc(var(--line-area-width) + var(--text-area-width)) ;
+
+  /*Exam-Room Variables */
+  --exam-page-width : calc(100vw * 0.9) ;
+  --exam-page-height : calc(100vh * 0.9) ;
+
+  --exam-border-size : 3px ;
+
+  --exam-header-height : calc(72px - var(--exam-border-size)) ;
+  --exams-buttons-padding : 8px ;
+  --exams-button-height: 32px ;
+
+  --exams-buttons-height : calc(var(--exams-button-height)  +  (2 * var(--exams-buttons-padding)))  ;
+  --exam-content-height : calc(var(--exam-page-height) - var(--exam-header-height) - var(--exam-border-size) - var(--exams-buttons-height)) ;
+
+  --navigation-width : 64px ;
+  --exam-content-page-width : calc(var(--exam-page-width) - var(--navigation-width) - (var(--exam-border-size) * 2)) ;
+  --exam-section-width : calc((calc(var(--exam-page-width) - var(--navigation-width) - (var(--exam-border-size) * 2))) / 2) ;
+
+}
+
+
+
+*{
+    font-family: "Roboto" , serif;
+}
+
+body{
+  padding: 0px;
+  margin: 0px;
+}
+
+.lineNo{
+  height: 20px;
+}
+
+.currentLineNo{
+  height: 20px;
+  color: green;
+}
+
+.textSpace{
+  font-size: 16px;
+  font-family: monospace;
+  display: inline-flex;
+  flex-direction: column;
+  .line{
+    font-family: monospace;
+    margin: 0;
+    display :inline-flex;
+    tab-size: 4;
+  }
+
+  .number{
+    font-family: monospace;
+    color: blue;
+    width:fit-content;
+  }
+
+  .primitive{
+    font-family: monospace;
+    color: orange;
+  }
+
+  .access{
+    font-family: monospace;
+    color: green;
+  }
+
+}

@@ -1,0 +1,240 @@
+<div class="upload" >
+    <admin-nav (tab) = "setTab($event)"></admin-nav>
+
+    <div  class="tab">
+      <div class="section">
+
+        <!--Coding-Document-->
+        <div class="document" *ngIf="currentTab == 'coding' " >
+          <div class="subTitle">
+            Question document
+          </div>
+
+          <div class="block">
+            <div  class="uploadSection" *ngIf = "!cQuestion.hasFile">
+              <input id = "codingFile" class = "file" type="file"
+                     (change)="onChange($event , 'coding')">
+
+              <div class="displayIcon">
+                      <span class="material-symbols-outlined uploadLogo">
+                          upload_file
+                          </span>
+
+                <div class="instructions">
+                  Click here or drag file
+                </div>
+              </div>
+
+            </div>
+
+            <div  class="uploadSection has" *ngIf = "cQuestion.hasFile">
+
+              <div class = "pdf-viewer">
+                <object [data]="currentPdf" type="application/pdf" class="pdfFile"></object>
+              </div>
+
+            </div>
+
+            <span class="material-symbols-outlined delete" *ngIf = "cQuestion.hasFile" (click) = "onRemove('coding')">
+                  delete
+            </span>
+          </div>
+
+        </div>
+
+        <!--Multiple-Choice Document-->
+        <div class="document" *ngIf="currentTab == 'multiplechoice'">
+          <div class="subTitle">
+            Question document
+          </div>
+
+          <div class="block">
+            <div class="uploadSection" *ngIf = "!mcQuestion.hasFile">
+              <input id = "multiple-choiceFile" class ="file" type="file"
+                     (change)="onChange($event , 'multiple-choice')">
+
+              <div class="displayIcon">
+                      <span class="material-symbols-outlined uploadLogo">
+                          upload_file
+                          </span>
+
+                <div class="instructions">
+                  Click here or drag file
+                </div>
+              </div>
+
+            </div>
+
+            <div class="uploadSection has" *ngIf = "mcQuestion.hasFile">
+              <div class = "pdf-viewer">
+                <object [data]="currentPdf" type="application/pdf" class="pdfFile"></object>
+              </div>
+            </div>
+
+            <span class="material-symbols-outlined delete" *ngIf = "mcQuestion.hasFile" (click) = "onRemove('multiple-choice')">
+                  delete
+                  </span>
+          </div>
+
+        </div>
+
+        <!--Written Document-->
+        <div class="document" *ngIf="currentTab == 'written'">
+          <div class="subTitle">
+            Question document
+          </div>
+
+          <div class="block">
+            <div class="uploadSection" *ngIf = "!wQuestion.hasFile">
+              <input id = "writeFile" class ="file" type="file"
+                     (change)="onChange($event , 'writing')">
+
+              <div class="displayIcon">
+                <span class="material-symbols-outlined uploadLogo">
+                    upload_file
+                </span>
+
+                <div class="instructions">
+                  Click here or drag file
+                </div>
+              </div>
+
+            </div>
+
+            <div class="uploadSection has" *ngIf = "wQuestion.hasFile">
+
+              <div class = "pdf-viewer">
+                <object [data]="writingPdf" type="application/pdf" class="pdfFile"></object>
+              </div>
+
+            </div>
+
+            <span class="material-symbols-outlined delete" *ngIf = "wQuestion.hasFile" (click) = "onRemove('writing')">
+              delete
+              </span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="section">
+
+        <div class="type" *ngIf="currentTab == 'coding'">
+          <code-ide id = "code-ide" [storedCode] = cQuestion.testedCode [scenarios] = true [results] = true (showConsoleChange)="changeIDEHeight($event)" (code)="executeCode($event)" ></code-ide>
+
+          <div class="console" *ngIf="showScenarios == true || showResults ==true">
+            <div class="scenarios" *ngIf="showScenarios == true">
+              <div class="addButton" (click) = "addScenarios()">
+                Add Scenario
+              </div>
+
+              <div class="scenarioHolder">
+                <div class="scenario" *ngFor = " let scenario of scenarios ; index as i">
+                  <div class="scenarioHeading" >
+                    <div class="scenarioNo">
+                      Scenario {{i + 1}}
+                    </div>
+
+                    <span class="material-symbols-outlined valueAdd" (click) = "addScenarioValue(i)">
+                                      add
+                                  </span>
+
+                    <span class="material-symbols-outlined delete" (click) = "deleteValueSet(i)">
+                                      delete
+                                  </span>
+                  </div>
+
+                  <div *ngFor = "let value of scenario ; index as j">
+                    <div class="scenarioBody">
+
+                      <div class="valueNo">
+                        {{j + 1}} &#41;
+                      </div>
+                      <input class ="scenarioValue" type="text" (change) = "onScenarioInput(i , j)" [value] = "scenarios[i][j]" placeholder = "Enter value">
+
+
+                      <span class="material-symbols-outlined delete" (click) ="deleteValue(i,j)">
+                                          delete
+                                      </span>
+
+                    </div>
+
+                  </div>
+              </div>
+
+                <div *ngFor = "let value of scenario ; index as j">
+                  <div class="scenarioBody">
+
+                    <div class="valueNo">
+                      {{j + 1}} &#41;
+                    </div>
+                    <input class ="scenarioValue" type="text" (change) = "onScenarioInput(i , j)" [value] = "scenarios[i][j]" placeholder = "Enter value">
+
+
+                    <span class="material-symbols-outlined delete" (click) ="deleteValue(i,j)">
+                                          delete
+                                      </span>
+                  </div>
+
+                </div>
+            </div>
+          </div>
+
+            <div class="consoleResults" *ngIf="showResults == true">
+              <div class = "result" *ngFor = "let result of cQuestion.testedOutputs ; let i = index">
+                <div class="sHead">
+                  Scenario {{i + 1}}
+                </div>
+                <div class="p">
+                  <div class="pHead">
+                    Parameters :
+                  </div>
+
+                  <div class="pContent" *ngFor = "let parameter of scenarios[i]">
+                    {{parameter}}
+                  </div>
+                </div>
+
+                <div class="rHead">
+                  Result :
+                </div>
+                <div class="rContent">
+                  {{result}}
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="type" *ngIf="currentTab == 'multiplechoice'">
+        <div class="options">
+          <div class="addButton" (click) = "addOptions()">
+            Add Option
+          </div>
+          <div id ="option" class="optionBox" *ngFor = "let option of mcQuestion.options ; index as i" >
+            <div class="tickbox" (click) = "toggleCorrect(i)">
+
+            </div>
+
+            <div class="option">
+                        <textarea  class="optionAnswer" (change) = "onInput(i)"
+                                   [value] = "mcQuestion.options[i]"></textarea>
+            </div>
+
+
+
+            <span class="material-symbols-outlined delete" (click) = "removeOption(i)">
+                        delete
+                        </span>
+          </div>
+        </div>
+      </div>
+
+      <div id = "upload" class="uploadButton" (click) = "uploadQuestion('coding')">
+          Upload
+      </div>
+    </div>
+    </div>
+
+</div>

@@ -1,0 +1,80 @@
+
+
+.body{
+    display: inline-flex;
+    flex-direction: column;
+    height : calc(1.2rem + 8px) ;
+    overflow-y: visible;
+
+    .optionSelected{
+        display: inline-flex;
+        width : 300px ;
+        height : calc(1.2rem + 8px) ;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid black;
+        &:hover{
+            cursor: pointer;
+        }
+    
+        .content{
+            padding-left: 8px;
+            font-size: 1.2rem;
+            color: grey;
+        }
+    
+        .drop-down{
+
+            font-size: 2rem;
+            transition: 0.3s linear;
+
+            &:hover{
+                color: green;
+            }
+    
+            &:active{
+                cursor: grabbing;
+            }
+        }
+    
+        .drop-down.down{
+            transform: rotateZ(180deg);
+        }
+    
+    }
+    
+    .optionSelected.default{
+    
+        .content{
+            color: black
+        }
+        
+    }
+    
+    .list{
+        display: none;
+        margin-top: 2px;
+        border: 1px solid black;
+        background-color: white;
+        .listOption{
+            padding-left : 8px;
+            line-height: calc(1.2rem + 8px);
+            &:hover{
+                cursor: pointer;
+                color: white;
+                background: rgb(101, 101, 240);
+                fill-opacity: 100;
+            }
+
+            &:active{
+                cursor: grabbing;
+            }
+        } 
+    }
+
+    .list.open{
+        display: block;
+    }
+
+}
+

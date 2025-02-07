@@ -1,0 +1,294 @@
+<assessment-nav (tab) = "setTab($event)" (height) = showHeight($event) ></assessment-nav>
+
+<div id = "coding" class="coding page tab" *ngIf = "currentTab === 'coding'" >
+
+    <div class="question">
+        <object [data]="codingPdf" type="application/pdf" class="pdfFile" ></object>
+
+
+        <div class="parameters">
+            <div class="parameter" *ngFor = "let scenario of cQuestions[currentCoding].scenarios ; let i = index">
+                <div class="sheading">
+                    Scenario {{i + 1}}
+                </div>
+
+                <div class="case">
+                    <div class="heading">
+                        Parameters :
+                    </div>
+                    <div class="content">
+                        {{scenario}}
+                    </div>
+                </div>
+
+                <div class="expected">
+                    <div class="heading">
+                        Result` :
+                    </div>
+
+                    <div class="content">
+                        {{cQuestions[currentCoding].testedOutputs[i]}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pageControl">
+
+        <div class="tracker">
+            <question-tracker (questionNo) = "changeQuestion('coding' ,$event)" [questions] = "cQuestions" [selected] = "selectedCoding" [current] = "currentCoding"></question-tracker>
+        </div>
+
+
+        <div class="button" (click) = "addQuestion('coding')">
+            Add Question
+        </div>
+    </div>
+</div>
+
+<div id= "multiplechoice" class="multiple-choice page tab" *ngIf = "currentTab === 'multiplechoice'">
+
+    <div class="question">
+        <object [data]="multiplePdf" type="application/pdf" class="pdfFile" ></object>
+
+
+        <div class="optionsBox">
+            <div class="options">
+                <div class="optionBlock" *ngFor = "let q of mcQuestions[currentMultiple].options; let i = index">
+                    <div class="optionBox"
+                        [style.opacity] = "q !== mcQuestions[currentMultiple].correctOptions[i] ? 100 : 0" >
+                        <div class="tickbox" >
+
+                        </div>
+
+                        <div class="option">
+                            <div  class="optionAnswer">
+                                {{q}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="optionsSelected">
+                <div class="optionBlock" *ngFor = "let q of mcQuestions[currentMultiple].options; let i = index">
+                    <div id ="option"
+                        class="optionBox selected"
+                        [style.opacity] = "q === mcQuestions[currentMultiple].correctOptions[i] ? 100 : 0"  >
+                        <div class="tickbox" >
+
+                        </div>
+
+                        <div class="option">
+                            <div  class="optionAnswer">
+                                {{q}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="pageControl">
+
+
+        <div class="tracker">
+            <question-tracker (questionNo) = "changeQuestion('multiple-choice' ,$event)" [questions] = "mcQuestions" [selected] = "selectedMChoices" [current] = "currentMultiple"></question-tracker>
+        </div>
+
+        <div class="button" (click) = "addQuestion('multiple-choice')">
+            Add Question
+        </div>
+    </div>
+
+</div>
+
+<div id= "written" class="writing page tab" *ngIf = "currentTab === 'written'">
+
+    <div class="question">
+        <object [data]="writtenPdf" type="application/pdf" class="pdfFile" ></object>
+    </div>
+
+    <div class="pageControl">
+        <div class="tracker">
+            <question-tracker (questionNo) = "changeQuestion('written' ,$event)" [questions] = "wQuestions" [selected] = "selectedWritten" [current] = "currentWritten"></question-tracker>
+        </div>
+
+
+        <div class="button" (click) = "addQuestion('written')">
+            Add Question
+        </div>
+    </div>
+</div>
+
+<div id= "review" class="review page tab" *ngIf = "currentTab === 'review'">
+
+    <div class="reviewLeft">
+        <div class="configure">
+
+            <div class = "category">
+                <div class="title">Position :</div>
+                <drop-down id = "position" [id] = "id" [options] = "positions" (mouseover) = "id = 0" (value) = "position = $event"></drop-down>
+            </div>
+
+            <div class="category">
+                <div class="title">Level : </div>
+                <drop-down id = "level" [id] = "id" [options] = "levels" (mouseover) = "id = 1" (value) = "level = $event"></drop-down>
+            </div>
+
+            <div class="category">
+                <div class="title">
+                   Duration :
+                </div>
+
+                <input id = "hour" type="number" >
+
+                <div class="title">
+                    hour/s
+                </div>
+
+                <input id = "minute" type="number">
+
+
+                <div class="title">
+                    minute/s
+                </div>
+            </div>
+
+        </div>
+
+        <div class="questions">
+
+            <div class="coding type" *ngIf = "reviewCoding.length > 0">
+                <div class="heading">
+                    Coding Questions
+                </div>
+
+                <div class="content">
+                    <div class="reviewQuestion" *ngFor = "let question of reviewCoding"
+                    (click) = "reviewQuestion('coding' , question)">
+                        Question {{question + 1}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="multiplechoice type" *ngIf = "reviewMultiple.length > 0">
+                <div class="heading">
+                    Multiple-Choice Questions
+                </div>
+
+                <div class="content">
+                    <div class="reviewQuestion" *ngFor = "let question of reviewMultiple"
+                    (click) = "reviewQuestion('multiple-choice' , question)">
+                        Question {{question + 1}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="written type" *ngIf = "reviewWritten.length > 0">
+                <div class="heading">
+                    Written Questions
+                </div>
+
+                <div class="content">
+                    <div class="reviewQuestion" *ngFor = "let question of reviewWritten"
+                    (click) = "reviewQuestion('written' , question)">
+                        Question {{question + 1}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button" (click) = submitAssessment()>
+            Submit Assessment
+        </div>
+    </div>
+
+    <div class="reviewRight" *ngIf = "reviewType !== ''">
+        <object [data]="reviewPdf" type="application/pdf" class="pdfFile" ></object>
+
+        <div class="optionsBox" *ngIf = "reviewType === 'multiple-choice'">
+            <div class="options">
+                <div class="optionBlock" *ngFor = "let q of reviewQ.options; let i = index">
+                    <div class="optionBox"
+                        [style.opacity] = "q !== reviewQ.correctOptions[i] ? 100 : 0" >
+                        <div class="tickbox" >
+
+                        </div>
+
+                        <div class="option">
+                            <div  class="optionAnswer">
+                                {{q}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="optionsSelected">
+                <div class="optionBlock" *ngFor = "let q of reviewQ.options; let i = index">
+                    <div id ="option"
+                        class="optionBox selected"
+                        [style.opacity] = "q === reviewQ.correctOptions[i] ? 100 : 0"  >
+                        <div class="tickbox" >
+
+                        </div>
+
+                        <div class="option">
+                            <div  class="optionAnswer">
+                                {{q}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="parameters" *ngIf = "reviewType === 'coding'">
+            <div class="parameter" *ngFor = "let scenario of reviewQ.scenarios ; let i = index">
+                <div class="sheading">
+                    Scenario {{i + 1}}
+                </div>
+
+                <div class="case">
+                    <div class="heading">
+                        Parameters :
+                    </div>
+                    <div class="content">
+                        {{scenario}}
+                    </div>
+                </div>
+
+                <div class="expected">
+                    <div class="heading">
+                        Result :
+                    </div>
+
+                    <div class="content">
+                        {{reviewQ.testedOutputs[i]}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+

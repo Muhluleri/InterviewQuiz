@@ -1,0 +1,50 @@
+<div  class="IdeBody" (load)="textValue = storedCode">
+  <div class="codeEditor">
+    <div class="lineBody" id="lineBody">
+      <div class="lineNo">1</div>
+    </div>
+    <div id="code-ide" class="textBody">
+      <div class = "base">
+      <textarea class="textSpace" id = "textIn"
+                [(ngModel)]="textValue" (ngModelChange)="onInput($event)"
+                (keydown)="findCursorPosition()"
+                (keydown)="onSpecialInput($event)"
+                (keydown.enter)="indent($event)"
+                (keydown.tab)="onTab($event)" (click)="findCursorPosition()"></textarea>
+
+        <div class="textSpace" id="textOut" ></div>
+      </div>
+    </div>
+  </div>
+  <div class="infoCode">
+    <div class="cursorPos">
+      <div class="posInfo">{{linePos + 1}}</div> &nbsp;:&nbsp;
+      <div class="posInfo">{{cursPos + 1}}</div>
+    </div>
+
+    <div class="consoleButtons">
+      <div class="consoleButton" *ngIf="scenarios" (click)="toggleConsole('scenarios')">
+        <div>
+          Scenarios
+        </div>
+
+      </div>
+
+      <div class="consoleButton" *ngIf="results" (click)="toggleConsole('results')">
+        <div>
+          Results
+        </div>
+      </div>
+    </div>
+
+    <div class="runButton" (click)="sendCode()">
+      <span class="material-symbols-outlined">
+        play_arrow
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+

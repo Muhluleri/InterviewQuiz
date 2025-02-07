@@ -1,0 +1,17 @@
+
+<div class="assessment">
+  <div class = "top">
+    <div class="side-menu" id="side-menu">
+      <span class="material-symbols-outlined icon" (click)="menuToggle()">{{ menuOpen ? "menu_open" : "menu"}}</span>
+      <div class = "menu" [hidden]="!menuOpen">
+        <div class="menu-item" id="menu-item-upload" (click)="navigateTo('upload')">Upload Question</div>
+        <div class="menu-item" id="menu-item-compile" (click)="navigateTo('compile')">Compile Assessment</div>
+        <div class="menu-item" id="menu-item-logout" (click)="logout()">Logout</div>
+      </div>
+    </div>
+
+  </div>
+  <router-outlet ></router-outlet>
+
+</div>
+

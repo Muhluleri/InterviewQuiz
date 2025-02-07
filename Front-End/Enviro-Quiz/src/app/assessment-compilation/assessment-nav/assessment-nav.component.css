@@ -1,0 +1,76 @@
+.nav-bar{
+    height: fit-content;
+}
+
+
+.fill{
+
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    outline: 0;
+    overflow:hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 2rem 2rem 0px 0px;
+    padding: 1rem 1rem 0.5rem 1rem;
+
+    .icon{
+        position: relative;
+        height: 4rem;
+        width : 4rem ;
+        transition: 0.4s ease-in;
+    }
+
+    .icon.on{
+        transition: 0.4s ease-out;
+        opacity: 0;
+    }
+
+    .selected-icon{
+        position: absolute;
+        height: 4rem;
+        width : 4rem ;
+        transition: 0.4s ease-in;
+        opacity: 0;
+    }
+
+    .selected-icon.on{
+        height: 4rem;
+        width : 4rem ;
+        transition: 0.4s ease-out;
+        opacity: 100;
+    }
+
+    .heading{
+
+        font-size: 2rem;
+        margin-left: 2rem;
+        font-weight: 500;
+    }
+
+    
+}
+
+.fill.selected {
+    color: whitesmoke;
+    transition: 0.4s ease;
+  }
+  
+.fill:before {
+    content: "";
+    position: absolute;
+    background: #000000;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top : calc(100% - 3px);
+    z-index: -1;
+    transition: 0.4s ease;
+}
+  
+.fill.selected:before {
+    top : 0 ;
+    background: rgb(76, 255, 121);
+}

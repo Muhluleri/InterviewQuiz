@@ -1,0 +1,486 @@
+.addButton{
+    padding : 8px;
+    margin-bottom: 16px;
+    width: fit-content;
+    border-radius: 16px;
+    font-weight: 600;
+    background-color: rgb(80, 252, 94);
+    box-shadow: 0px 4px 1px black;
+
+    &:active{
+        transform: translateY(2px);
+        box-shadow: 0px 2px 1px black;
+        color: rgb(63, 63, 63);
+    }
+
+    &:hover{
+        cursor: pointer;
+        color: white;
+    }
+}
+
+.block{
+    display: flex;
+
+    height: fit-content;
+
+    .delete{
+        margin-left: 16px;
+        font-size: 2rem;
+
+        &:hover{
+            color: red;
+            cursor: pointer;
+        }
+    }
+}
+
+@import "../admin-nav/admin-nav.component";
+
+$upload-height : var(--upload-height) ;
+$page-padding : var(--page-padding) ;
+$page-height : var(--page-height);
+$page-width : var(--page-width);
+
+$section-width : var(--section-width);
+
+$pdf-viewer-height : var(--pdf-viewer-height);
+$pdf-viewer-width : var(--pdf-viewer-width);
+
+$console-height : calc($page-height - var(--code-editor-height) - var(--info-height) - 2px) ;
+
+
+.tab{
+  height: $page-height;
+  width: $page-width;
+
+  display: inline-flex;
+
+  .section{
+    padding : 0 $page-padding;
+    height: calc($page-height );
+    width: $section-width;
+
+    .type{
+      height : $page-height;
+
+      .console{
+        border : solid 0.1px black;
+        height : $console-height;
+        width: $section-width;
+      }
+
+
+    }
+  }
+
+}
+
+.scenarios{
+  padding : 16px;
+
+  .scenarioHolder{
+    height: calc($console-height - (16px * 2) - (19px + 16px + 16px));
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+
+  .scenario{
+
+    border: 2px solid black;
+    border-radius: 16px;
+    padding: 16px 0px;
+    margin-bottom: 8px;
+    .scenarioHeading{
+      display: inline-flex;
+      width: calc(450px - 16px - 16px);
+      justify-content: space-around;
+      align-items: center;
+      margin-bottom: 8px;
+
+      .scenarioNo{
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .valueAdd{
+        font-size: 1rem
+      }
+    }
+
+    .scenarioBody{
+      width: 400px;
+      display: inline-flex;
+      align-items: center;
+      margin-bottom : 8px;
+
+      .valueNo{
+        font-weight: 500;
+        margin : 0px 16px;
+      }
+
+      .scenarioValue{
+        border: none;
+        margin-right: 16px;
+        &:focus{
+          outline: none;
+          border-bottom: 1px solid green;
+
+        }
+      }
+
+    }
+
+  }
+}
+
+
+
+.delete{
+    font-size: 1rem;
+    color: red;
+    text-shadow: 0px 2px 2px rgb(243, 108, 108);
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    &:active{
+        transform: translateY(1px);
+        text-shadow: 0px 1px 2px rgb(255, 83, 83);
+    }
+}
+
+.document{
+    width: fit-content;
+    height: fit-content;
+}
+
+
+.options{
+  padding: 16px;
+
+
+  .optionBox{
+    font-size: 1.5rem;
+    background-color: rgb(247, 247, 247);
+    height: fit-content;
+
+    padding: 8px;
+    margin-bottom: 8px;
+    width: 500px;
+
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 4px 4px 2px black ;
+
+    .option{
+      display: flex;
+      width: 450px;
+    }
+    .optionAnswer{
+      position: relative ;
+      field-sizing: normal;
+      resize: none;
+      background: transparent;
+      text-wrap: wrap;
+      z-index: 1;
+      width: 450px;
+      max-width: 450px;
+      height: calc(1rem + 2px);
+      color : black;
+      line-height: calc(1rem + 2px);
+      font-size: 1rem;
+      font-weight: 400;
+      border: none;
+      &:focus{
+        outline: none;
+      }
+
+    }
+
+
+
+    .tickbox{
+      margin-right: 8px;
+      margin-left: 8px;
+      height : 8px ;
+      width: 8px;
+      border-radius: 2px;
+      border: 2px solid black;
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+
+
+  }
+
+  .optionBox.selected{
+    background-color: rgb(138, 218, 138);
+    box-shadow: 4px 4px 2px rgb(110, 173, 110);
+
+    .tickbox{
+      border-color: white;
+    }
+
+    .optionAnswer{
+
+      background-color: rgb(138, 218, 138);
+      color: white;
+      font-weight: 800;
+    }
+  }
+
+}
+
+.consoleResults{
+
+    margin-top: 16px;
+    padding: 16px;
+    display: inline-flex;
+    flex-direction: column;
+    width: calc($section-width - 32px);
+    height : calc($console-height - (16px * 2) - (19px + 16px + 16px));
+    overflow: scroll;
+    border-radius: 16px;
+
+    .result{
+        margin-top: 16px;
+        padding: 16px;
+        border-radius: 16px ;
+        z-index: 1;
+        transition: 0.3s ease-in;
+        background-color: rgb(231, 231, 231);
+
+        &:hover{
+            transform: translateY(-5px);
+            box-shadow: 5px 5px 5px rgb(53, 255, 53);
+        }
+
+        .sHead{
+            font-size: 2rem;
+            line-height: calc(2rem + 8px);
+        }
+
+        .p{
+            display: inline-flex;
+            font-size: 1.2rem;
+            line-height: calc(1.2rem + 8px);
+
+            .pContent{
+                margin-left: 8px;
+            }
+
+
+        }
+
+
+
+
+        .rHead{
+            font-size: 1.2rem;
+            line-height: calc(1.2rem + 8px);
+        }
+
+        .rContent{
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: calc(1.3rem + 8px);
+        }
+    }
+
+
+
+}
+
+.subTitle{
+    margin: 16px 0px 0px 16px;
+    font-size: 2rem;
+}
+
+.upload{
+    height: 100%;
+    width: 100%;
+
+}
+
+.uploadButton{
+    display: flex ;
+    width: 4rem;
+    height : 1rem;
+    padding : 8px ;
+    z-index: 1;
+    justify-content: center;
+    align-items: center ;
+    border: 2px solid black;
+    border-radius: 16px;
+
+    position: absolute;
+    top : calc(100% - 1rem  - 36px );
+    left : calc(100% - 4rem - 32px);
+    box-shadow: 3px black;
+    transition: 0.4s ease-in ;
+
+    &:hover{
+        transition: 0.4s ease-out;
+        color: rgb(255, 255, 255);
+        font-weight: 800;
+        cursor:  pointer;
+        border: 2px solid rgb(76, 255, 121);
+
+    }
+
+    &:active{
+        color: black;
+    }
+}
+
+.uploadButton::before{
+    content: "";
+    z-index: -1;
+    position: absolute;
+    border-radius: 14px;
+    height : 0;
+    padding: 8px ;
+
+    right: 0;
+    left: 50%;
+    top : 50% ;
+    transition: 0.4s ease-in ;
+}
+
+.uploadButton:hover::before{
+    transition: 0.5s ease-out;
+    height: 1rem;
+    right: 0;
+    left: 0;
+    top: 0;
+    background-color: rgb(76, 255, 121);
+}
+
+.uploadSection{
+    margin-left:16px;
+    width : 300px ;
+    height: 300px ;
+    display: flex;
+
+    border: 2px solid black;
+    border-radius: 16px;
+
+    input{
+
+        position: absolute;
+        width : 300px ;
+        height: 300px ;
+        border-radius: 14px;
+        z-index: 1;
+        opacity: 0;
+        &:hover{
+            cursor: pointer;
+        }
+
+
+    }
+    .displayIcon{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: -1;
+        height: 300px;
+        width: 300px;
+        border-radius: 16px;
+
+        .uploadLogo{
+            justify-self: center;
+            align-self: center;
+            font-size: 6rem;
+            border-radius: 16px;
+        }
+    }
+
+    .displayIcon.off{
+        display: none;
+    }
+
+    .pdf-viewer{
+        display: none;
+        position: absolute;
+    }
+
+}
+
+.uploadSection.has{
+    width : $pdf-viewer-width;
+    height :$pdf-viewer-height ;
+
+    .pdf-viewer{
+        display: flex;
+      width : $pdf-viewer-width;
+        height :$pdf-viewer-height ;
+
+        .pdfFile{
+          width : $pdf-viewer-width;
+            height :$pdf-viewer-height ;
+            border-radius: 15px;
+        }
+    }
+}
+
+.uploadSection.hasFile{
+    width : 500px;
+    height :400px ;
+
+    .pdf-viewer{
+        display: flex;
+        width : 500px;
+        height :400px ;
+
+
+        .pdfFile{
+            width : 500px;
+            height :400px ;
+            border-radius: 15px;
+        }
+    }
+}
+
+
+
+.valueAdd{
+    font-size: 1rem;
+    font-weight: 600;
+    color: green;
+    text-shadow: 0px 2px 2px greenyellow;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    &:active{
+        transform: translateY(1px);
+        text-shadow: 0px 1px 2px rgb(161, 252, 25);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

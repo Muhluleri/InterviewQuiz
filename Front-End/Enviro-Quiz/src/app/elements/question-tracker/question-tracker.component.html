@@ -1,0 +1,32 @@
+
+
+<div class="tracker">
+  <div id = "unselected" class="questionNos">
+    <div class= "unselected"  *ngFor = "let q of questions ; let i = index" >
+      <div
+        class="questionNo unselectedNos"
+        [style.opacity] = "((current !== i) && (selected[i] === false)) ? 100 : 0"
+        (click) = "changeQuestion(i)" >
+        {{ i + 1 }}
+      </div>
+    </div>
+  </div>
+
+  <div id =  "selected" class="questionNos">
+    <div class ="selected"  *ngFor = "let q of selected ; let i = index">
+      <div class="questionNo selectedNos"
+           [style.opacity] = "(q ===true && current !== i) ? 100 : 0">
+        {{ i + 1 }}
+      </div>
+    </div>
+  </div>
+
+  <div id = "current" class="questionNos">
+    <div class = "current " *ngFor = "let q of questions ; let i = index" >
+      <div
+        class="questionNo currentNo"
+        [style.opacity] = "current === i ? 100 : 0 "
+      >{{ i + 1 }}</div>
+    </div>
+  </div>
+</div>

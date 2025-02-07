@@ -1,0 +1,20 @@
+<div class="body" >
+    <div id = "option" name = "optionSelected" class="optionSelected" (click) = "dropMenu()">
+        <div name = "content" class="content">
+            Select {{topic}}
+        </div> 
+        <span name = "button" class="material-symbols-outlined drop-down" >
+            arrow_drop_up
+            </span>
+    </div>
+
+    <div name ="list" class="list">
+        <div class="listOption" *ngFor = "let option of options ; let i = index" (click) = "selectOption(i)">
+            {{option}}
+        </div>
+
+
+    </div>
+
+
+</div>

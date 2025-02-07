@@ -1,0 +1,161 @@
+
+
+<div class="body">
+  <div class="page">
+
+    <div class="header">
+      <div class="details">
+        {{applicant.firstName}} {{applicant.lastName}}
+      </div>
+
+      <div class="companyName">
+        Enviro365 Assessment
+      </div>
+
+      <div id="timer" class = "details">
+        {{timeLeft}}
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="section1">
+        <div class="review">
+          <table>
+            <thead>
+            <tr >
+              <th class="questionNo">No</th>
+              <th class="questionSection">Section</th>
+              <th>Attempted</th>
+            </tr>
+            </thead>
+
+          </table>
+          <div class="tableBody">
+            <table>
+              <tbody>
+              <tr *ngFor="let question of allQuestions ; let i = index">
+                <td class="questionNo" >
+                  <div class="questionItem" (click)="goToQuestion(i)">
+                    {{i + 1}}
+                  </div>
+
+                </td>
+
+                <td class="questionSection " >
+                  <div class="questionItem">
+                    {{question.section}}
+                  </div>
+                </td>
+                <td>
+                  <div class="questionItem">
+                    {{applicant.answers[i].answer.length == 0 || (applicant.answers[i].answer[0] == null || applicant.answers[i].answer[0].trim() == "") ? "Not-Attempted" : "Attempted"}}
+                  </div>
+                  </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="section2">
+        <div class="assessmentInfo">
+          <div class="infoHeading">Position : <div class="info">{{ applicant.assessment.position }}</div> </div>
+          <div class="infoHeading">Level : <div class="info">{{ applicant.assessment.level }}</div></div>
+          <div class="infoHeading">Start Time : <div class="info">{{ start }}</div></div>
+          <div class="infoHeading">End Time: <div class="info">{{ end == "" ?  "-- : -- : --" : end }}</div></div>
+        </div>
+
+        <div class="results">
+          <table>
+            <thead>
+              <tr>
+                <th>Section</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td> <div class="resultItem">Coding</div> </td>
+                <td> <div class="resultItem">{{applicant.result.codingResult != null ? "" + (applicant.result.codingResult * 100) + "%"  : "--%"}}</div> </td>
+              </tr>
+              <tr>
+                <td><div class="resultItem">Multiple-Choice</div></td>
+                <td> <div class="resultItem">{{applicant.result.multiplechoiceResult != null ? "" + (applicant.result.multiplechoiceResult * 100) + "%"  : "--%"}}</div> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="buttons">
+      <div class="button" (click)="submitAssessment()" *ngIf="applicant.result.multiplechoiceResult == null">
+        Submit
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<header>-->
+<!--  <div class="companyName">-->
+<!--    Enviro365 Assessment-->
+<!--  </div>-->
+<!--</header>-->
+
+<!--<div class="content">-->
+<!--  <div class="info">-->
+<!--    <div class="column">-->
+<!--      <div class="jobInfo">-->
+<!--        {{ applicant.assessment.level }} {{ applicant.assessment.position }}-->
+<!--      </div>-->
+
+<!--      <div class="applicantInfo">-->
+<!--        {{ applicant.firstName }} {{ applicant.lastName }}-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="column">-->
+<!--      <div class="timeInfo">-->
+<!--        Time left : <div id="timer">{{ timeLeft }}</div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--  <div class="review">-->
+<!--    <table>-->
+<!--      <thead>-->
+<!--      <tr >-->
+<!--        <th>No</th>-->
+<!--        <th>Section</th>-->
+<!--        <th>Attempted</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr *ngFor="let question of allQuestions ; let i = index">-->
+<!--        <td (click)="goToQuestion(i)">{{i + 1}}</td>-->
+<!--        <td>{{question.section}}</td>-->
+<!--        <td>Attempted</td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+
+
+<!--    </table>-->
+<!--    <table>-->
+
+<!--    </table>-->
+<!--  </div>-->
+
+<!--  <div class="buttons" >-->
+<!--    <div class="button" >-->
+<!--      Submit-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--</div>-->

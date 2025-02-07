@@ -1,0 +1,280 @@
+.body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+
+  .page {
+    border: 3px solid black;
+    align-self: center;
+    height: 90%;
+    width: 90%;
+    border-radius: 16px;
+    display: inline-flex;
+    flex-direction: column;
+
+    .header {
+      padding: 0px 16px 16px 16px;
+      display: inline-flex;
+      height: 64px;
+      border-bottom: 3px solid green;
+      justify-content: space-around;
+      align-items: end;
+
+      .details {
+        font-size: 24px;
+      }
+
+      .companyName{
+        font-size: 36px;
+        font-weight: 401;
+      }
+    }
+
+    .content {
+      display: inline-flex;
+      height: calc(100% - 64px - 80px);
+
+      .section1{
+        display: flex;
+        width: 50%;
+        justify-content: center;
+
+        .review{
+          margin: 16px;
+          margin-top: 64px;
+          border : 2px solid black;
+          height: fit-content;
+        }
+
+
+        .questionNo{
+          width: 60px
+        }
+
+        .questionSection{
+          width: 200px;
+
+        }
+
+        .questionItem{
+          margin-left: 16px;
+          font-size: 16px;
+
+          &:hover{
+            cursor: pointer;
+          }
+        }
+
+
+        table{
+          width: 700px;
+
+          tr{
+            height : 70px;
+          }
+
+
+        }
+
+        th{
+          font-size: 20px;
+        }
+
+        td, th , tbody , tr ,table{
+          border-collapse: collapse;
+          border: 2px solid black;
+        }
+
+        .tableBody{
+          height: fit-content;
+          max-height: calc(70px * 6);
+          overflow-y: scroll;
+        }
+
+
+      }
+
+      .section2{
+        width: 50%;
+        padding-top: 64px;
+        margin-left: 64px;
+
+        .assessmentInfo{
+          display: inline-flex;
+          flex-direction: column;
+          height : 300px;
+          padding-left: 32px;
+          font-size: 24px;
+
+          .infoHeading{
+            display: inline-flex;
+            margin-bottom: 8px;
+
+            .info{
+              margin-left: 16px;
+              font-weight: bold;
+            }
+          }
+        }
+
+        .results{
+
+          .resultItem{
+            margin-left: 16px;
+
+          }
+
+          td , th{
+            width: 10vw;
+          }
+
+          th{
+            font-size: 20px;
+            font-weight: bold;
+          }
+
+          td{
+            font-size: 20px;
+          }
+          table ,tr , td ,th{
+            border-collapse: collapse;
+            border: 1px solid black;
+          }
+
+          tr{
+            height: 70px;
+          }
+        }
+      }
+    }
+
+    .buttons{
+      height: calc(100% - (100% - 64px - 80px) - 64px);
+      display: flex;
+      height: 100px;
+      justify-content: end;
+      align-items: center;
+
+      .button{
+        margin: 8px;
+        padding : 8px;
+        font-size: 24px;
+        border: 1px solid black;
+        border-radius: 32px;
+        transition: 0.2s ease 0s ;
+
+        &:hover{
+          cursor: pointer;
+          background: green;
+          color: white;
+        }
+
+
+      }
+    }
+  }
+
+}
+
+
+/*header{*/
+/*  display: flex;*/
+/*  height: 3rem;*/
+/*  width: calc(100vw - 16px - 8px);*/
+/*  padding-left: 8px;*/
+/*  max-height: 100px ;*/
+/*  align-items: center;*/
+
+/*  .companyName{*/
+/*    font-size: 2rem;*/
+/*  }*/
+/*}*/
+
+/*.content{*/
+
+/*  display: inline-flex;*/
+/*  flex-direction: column;*/
+/*  justify-content: space-between;*/
+
+/*  .info{*/
+
+/*    display: inline-flex;*/
+/*    width: calc(100vw - 16px);*/
+/*    justify-content: space-between;*/
+
+/*    .column{*/
+/*    }*/
+
+/*    .jobInfo{*/
+/*      padding : 8px;*/
+/*      font-size: 1.5rem;*/
+/*    }*/
+
+/*    .applicantInfo{*/
+/*      padding : 0px 0px 8px 8px;*/
+/*      font-size: 1.2rem;*/
+
+/*    }*/
+
+
+
+
+
+/*    .timeInfo{*/
+/*      display: inline-flex;*/
+/*      padding: 8px;*/
+/*      font-size: 1.5rem;*/
+/*      width: fit-content;*/
+
+/*      #timer{*/
+/*        margin-left: 8px;*/
+/*      }*/
+/*    }*/
+/*  }*/
+
+/*  .review{*/
+/*    padding : 8px;*/
+
+/*    table {*/
+/*      width: 100%;*/
+/*    }*/
+/*    table , tr , th , td{*/
+/*      border: 1px solid grey;*/
+/*      border-collapse: collapse;*/
+/*      font-size: 1.2rem;*/
+/*    }*/
+
+/*    td{*/
+/*      height: fit-content;*/
+/*      padding: 16px 16px;*/
+/*    }*/
+/*  }*/
+
+/*  .buttons{*/
+/*    display: flex;*/
+/*    height: 100px;*/
+/*    justify-content: end;*/
+/*    align-items: center;*/
+
+/*    .button{*/
+/*      margin: 8px;*/
+/*      padding : 8px;*/
+/*      font-size: 24px;*/
+/*      border: 1px solid black;*/
+/*      border-radius: 32px;*/
+/*      transition: 0.2s ease 0s ;*/
+
+/*      &:hover{*/
+/*        cursor: pointer;*/
+/*        background: green;*/
+/*        color: white;*/
+/*      }*/
+
+
+/*    }*/
+/*  }*/
+
+/*  height: calc(100vh - 16px - 3rem);*/
+/*}*/
+

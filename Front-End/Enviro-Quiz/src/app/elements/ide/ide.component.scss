@@ -1,0 +1,172 @@
+@import "../../question-upload/question-upload.component.scss";
+$line-height : var(--line-height) ;
+$info-height : var(--info-height) ;
+
+$code-editor-height : var(--code-editor-height) ;
+$line-area-width : var(--line-area-width) ;
+$text-area-width : var(--text-area-width) ;
+$ide-width : var(--ide-width) ;
+
+
+
+
+.IdeBody{
+  display : flex;
+  flex-direction: column;
+}
+.codeEditor{
+  width: $ide-width;
+  height: fit-content;
+  display: inline-flex;
+  border: 1px solid black;
+  height : $code-editor-height;
+  overflow-y: hidden;
+  scrollbar-width: none;
+
+  .lineBody{
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    width : $line-area-width ;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: $line-height;
+    height: $code-editor-height;
+    overflow-y: hidden ;
+
+    .lineNo{
+      height: $line-height;
+    }
+
+    .currentLineNo{
+      height: $line-height;
+      color: green;
+    }
+  }
+  .textBody{
+    border-left: 1px solid black;
+    width :fit-content;
+    height : $code-editor-height;
+    padding-left: 8px;
+    .base{
+      width : $text-area-width;
+      height: $code-editor-height;
+      position: relative;
+      overflow-x: scroll;
+      textarea{
+        position: absolute;
+        color: transparent;
+        caret-color: black;
+        resize: none;
+        tab-size: 4;
+        z-index: 2;
+        background-color: transparent;
+        padding: 0px;
+        margin: 0px;
+        outline:0px none transparent;
+        border:none;
+        &:focus{
+          outline: none;
+        }
+      }
+
+      #textOut{
+        position: absolute;
+        overflow-y : hidden;
+        overflow-x: hidden;
+        z-index: 1;
+      }
+
+      .textSpace{
+        font-size: 16px;
+        font-family: monospace;
+        width :100%;
+        height : 100%;
+        line-height : $line-height;
+        .line{
+          display :inline-flex;
+          flex-direction: row;
+          font-weight: bold;
+        }
+
+      }
+    }
+  }
+
+
+}
+
+.infoCode{
+
+  width : calc($ide-width + 2px) ;
+  display: inline-flex;
+  justify-content: space-between;
+  height: $info-height;
+  align-items: center;
+  background: #7fbb25;
+
+  .cursorPos{
+    padding-left: 16px;
+    display: inline-flex;
+  }
+
+  .consoleButtons{
+    display: inline-flex;
+
+    .consoleButton{
+      display: flex;
+      padding : 0 16px;
+      background-color: green;
+      height : $info-height;
+      align-items: center;
+      justify-content: center;
+      border-radius : 12px 12px  0 0 ;
+
+      &:hover{
+        cursor: pointer;
+        background-color: #008c00;
+        div{
+          color: white;
+        }
+      }
+
+      &:active{
+        background-color: #003a00;
+        div{
+          color: greenyellow;
+        }
+      }
+
+    }
+  }
+
+  .runButton{
+
+    display: flex;
+    height : $info-height;
+    width : 100px;
+    background-color: green;
+    align-items: center;
+    justify-content: center;
+    border-radius :  12px 0 0 12px  ;
+
+    &:hover{
+      cursor: pointer;
+      background-color: #03c703;
+      span{
+        color: white;
+      }
+    }
+
+    &:active{
+      background-color: #003a00;
+      span{
+        color: greenyellow;
+      }
+    }
+  }
+}
+
+
+

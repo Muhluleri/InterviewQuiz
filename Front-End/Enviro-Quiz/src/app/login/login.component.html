@@ -1,0 +1,7 @@
+<div class="page">
+  Login Page
+  <div><label>Username : <input id = "username" type="text"></label></div>
+  <div><label>Password : <input id = "password" type="password"></label></div>
+  <input (click)="login()" class="submit" type="button" value="Login">
+  <div *ngIf="message != ''">{{message}}</div>
+</div>

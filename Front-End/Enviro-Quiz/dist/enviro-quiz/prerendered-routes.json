@@ -1,0 +1,9 @@
+{
+  "routes": [
+    "/",
+    "/assessment",
+    "/assessment/compile",
+    "/assessment/upload",
+    "/login"
+  ]
+}

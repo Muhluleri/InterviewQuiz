@@ -1,0 +1,156 @@
+<div class="body">
+
+      <div class="page">
+        <div class="header">
+
+          <div class="details">
+            {{applicant.firstName}} {{applicant.lastName}}
+          </div>
+
+          <div class="questionNo">
+            Question {{current + 1}}
+          </div>
+
+          <div id="timer" class = "details">
+            {{timeLeft}}
+          </div>
+        </div>
+
+        <div class="content">
+          <div class= "contentPage" id = "contentPage">
+            <div class="section">
+              <div class = "pdf-viewer">
+                <object [data]="currentPdf" type="application/pdf" class="pdfFile"></object>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="multiple-choice" *ngIf="section == 'MULTIPLE_CHOICE'">
+                <div *ngIf="allQuestions[current].correctOptions.length > 0 "> Please select {{allQuestions[current].correctOptions.length}} option </div>
+
+                <div class="options" *ngIf="section == 'MULTIPLE_CHOICE'">
+                  <div id ="option" class="optionBox" *ngFor="let option of allQuestions[current].options ; let i = index" (click) = "toggleCorrect(i)">
+                    <div class="tickbox" >
+                    </div>
+                    <div class="option">
+                      <div  class="optionAnswer">{{option}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="written" *ngIf="section == 'WRITTEN'">
+                <div>Please answer in textbox provided</div>
+                <textarea id="writtenAnswer" class="writtenAnswer" (change)="setWrittenAnswer()" [disabled] = textDisabled></textarea>
+              </div>
+
+              <div class="coding" *ngIf="section =='CODING'" >
+                <code-ide id = "code-ide"  [storedCode] = "applicant.answers[current].answer[0]"
+                          [scenarios] = false
+                          [results] = true
+                          (showConsoleChange)="openTests($event)"
+                          (code)="executeCode($event)"></code-ide>
+                <div class="console" *ngIf=" showResults ==true">
+
+                  <div class="consoleResults" *ngIf="showResults == true">
+                    <div class = "result" *ngFor="let result of tests ; let i = index">
+                      <div class="sHead">Test {{i + 1}}
+                      </div>
+                      <div class="testLine">
+                        <div class="p">
+                          <div class="pHead">
+                            Parameters :
+                          </div>
+
+                          <div class="pContent" >
+                            {{allQuestions[current].scenarios[i]}}
+                          </div>
+                        </div>
+                        <div class="p">
+                          <div class="pHead">
+                            Passed :
+                          </div>
+
+                          <div class="pContent" >
+                            {{allQuestions[current].testedOutputs[i] == result}}
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="rHead">
+                        Expected :
+                      </div>
+                      <div class="rContent">
+                        {{allQuestions[current].testedOutputs[i]}}
+                      </div>
+
+                      <div class="rHead">
+                        Result :
+                      </div>
+                      <div class="rContent">
+                        {{result}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question-nav">
+            <span class="material-symbols-outlined" *ngIf = "!menuOpen" (click)="openMenu()">
+              menu
+            </span>
+
+            <span class="material-symbols-outlined" *ngIf = "menuOpen" (click)="openMenu()">
+              menu_open
+            </span>
+
+
+            <div class="tracker" *ngIf = "menuOpen">
+              <question-tracker (questionNo) = "changeQuestion('coding' ,$event)" [questions] = "allQuestions" [selected] = "allQuestionsAsBoolean" [current] = "current"></question-tracker>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--          <div class="section two">-->
+<!--            <div class="tracker">-->
+<!--              <question-tracker (questionNo) = "changeQuestion('coding' ,$event)" [questions] = "allQuestions" [selected] = "allQuestionsAsBoolean" [current] = "current"></question-tracker>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="buttons">
+
+          <div class="button"  (click)="previous()" *ngIf="current != 0">
+            Previous
+          </div>
+
+          <div class="button" (click)="next()" *ngIf="current != allQuestions.length - 1">
+            Next
+          </div>
+
+          <div class="button" (click)="sendToReviewPage()">
+            Review
+          </div>
+        </div>
+
+    </div>
+
+</div>

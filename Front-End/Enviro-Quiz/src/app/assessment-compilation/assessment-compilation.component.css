@@ -1,0 +1,273 @@
+.configure{
+    display: inline-flex;
+    flex-direction: column;
+    padding: 32px;
+
+    .category{
+        
+        display: inline-flex;
+        align-items: center;
+        margin: 16px 0px;
+
+        .title{
+            width : 100px;
+            font-size: 1.2rem;
+        }
+    
+        #position{
+            position : relative;
+            z-index: 1 ;
+        }
+    
+        #level{
+            position : relative;
+            z-index: 0 ;
+        }
+    }
+
+}
+
+
+.pdfFile{
+    margin-top: 32px;
+    margin-left: 32px;
+    border: 1px solid black;
+    height: 600px;
+    width: 800px;
+}
+.page{
+    display: inline-flex;
+
+    .question{
+        width: 1000px;
+        height: 800px;
+        overflow-y: scroll;
+
+    }
+
+    .pageControl{
+        display: inline-flex;
+        flex-direction: column;
+        width: 600px;
+        height: 800px;
+
+        .tracker{
+            min-height: calc(42px * 10);
+        }
+
+
+    }
+
+}
+
+
+.optionBox{
+    font-size: 1.5rem;
+    background-color: rgb(247, 247, 247);
+    height: fit-content;
+    
+    padding: 8px;
+    margin-bottom: 8px;
+    width: 500px;
+    
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    box-shadow: 4px 4px 2px black ;
+
+    .option{
+        display: flex;
+        width: 450px;
+        margin-top: 8px;
+    }
+        .optionAnswer{
+            position: relative ;
+            field-sizing: normal;
+            resize: none;
+            background: transparent;
+            text-wrap: wrap;
+            z-index: 1;
+            width: 450px;
+            max-width: 450px;
+            height: calc(1.5rem + 2px);
+            color : black;
+            line-height: calc(1.5rem + 2px);
+            font-size: 1.5rem;
+            font-weight: 400;
+            border: none;
+            &:focus{
+                outline: none;
+            }
+
+        }                
+    
+    
+
+    .tickbox{
+        margin-right: 8px;
+        margin-left: 8px;
+        height : 8px ;
+        width: 8px;
+        border-radius: 2px;
+        border: 2px solid black;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+
+}
+
+.optionBox.selected{
+    background-color: rgb(138, 218, 138);
+    box-shadow: 4px 4px 2px rgb(110, 173, 110);
+
+    .tickbox{
+        border-color: white;
+    }
+
+    .optionAnswer{
+        
+        background-color: rgb(138, 218, 138);
+        color: white;
+        font-weight: 800;
+    }
+}
+
+.reviewLeft{
+    width: 900px;
+
+    .questions{
+        height: 400px;
+        width: 800px;
+        overflow-y: scroll;
+        border: 1px solid black;
+        padding: 16px;
+        margin-left: 32px;
+        .type{
+            margin-bottom: 16px;
+            .heading{
+                font-size: 2rem;
+            }
+        }
+
+    }
+
+    .button{
+        margin: 32px;
+    }
+}
+
+.reviewRight{
+    height: 800px;
+    overflow-y: scroll;
+}
+
+.reviewQuestion{
+    margin-top: 8px;
+    width: fit-content;
+    font-size: 1.2rem;
+    border-bottom: 2px solid green;
+    font-weight: bold;
+
+    &:hover{
+        cursor: pointer;
+    }
+
+    &:active{
+        cursor: grabbing;
+    }
+}
+
+.button{
+    position: relative;
+    height: 1.2rem;
+    width: fit-content;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    padding: 8px;
+    margin: 8px;
+    border-radius: 8px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px green;
+    transition: 0.2s linear;
+
+    &:active{
+        transform: translateY(2px) ;
+        box-shadow: 1px 0px 0.5px rgb(0, 73, 0);
+
+    }
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.optionsBox{
+    position: relative;
+
+    .options{
+        margin-top: 16px;
+        margin-left: 32px;
+        position: absolute;
+    }
+
+    .optionsSelected{
+        margin-top: 16px;
+        margin-left: 32px;
+        position: absolute;
+    }
+}
+
+.parameters{
+    margin-top: 16px;
+    margin-left: 32px;
+    width: 800px;
+
+    .parameter{
+
+        border: 1px solid black;
+        margin-bottom: 16px;
+        border-radius: 16px;
+        padding: 16px;
+        background-color: rgb(177, 177, 177);
+
+        .sheading{
+            font-size: 2rem;
+            font-weight: bolder;
+        }
+
+        .case{
+            display: inline-flex;
+            align-items: center;
+
+            font-size: 1.5rem;
+
+            .heading{
+                padding-left: 8px;
+            }
+
+            .content{
+                margin-left: 8px ; 
+                font-weight: bold;
+            }
+        }
+
+        .expected{
+            margin-top: 8px;
+            font-size: 1.5rem;
+
+            .heading{
+                padding-left: 16px;
+            }
+
+            .content{
+                padding: 8px;
+                border: 1px solid grey;
+                height: 100px;
+                background-color: white;
+            }
+        }
+    }
+}
