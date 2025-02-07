@@ -1,0 +1,86 @@
+version: '3.1'
+
+services:
+#  Quiz Backend Application ---------------------------------------------------------
+
+#  Quiz Database
+  db :
+    image: postgres
+    container_name: quiz_db
+    ports:
+      - 5433:5432
+
+    environment:
+      POSTGRES_PASSWORD: enviro_quiz
+
+#  Quiz Database Adminer
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+        
+  app-backend:
+    build:
+      context: ./BackEnd/Enviro-Quiz
+      dockerfile: Dockerfile
+    container_name: App_Backend
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+    ports:
+      - 8083:8083
+
+
+#-----------------------------------------------------------------------------------------
+
+#  Security Backend Appliation -----------------------------------------------------------
+
+#  Security Database
+  db2:
+    image: postgres
+    container_name: security_db
+    ports:
+      - 5432:5432
+
+    environment:
+      POSTGRES_PASSWORD: security
+
+#  Security Database Adminer
+  adminer2:
+    image: adminer
+    ports:
+      - 8081:8080
+    environment:
+      - ADMINER_DEFAULT_SERVER=db2
+      - ADMINER_DEFAULT_USER=postgres
+      - ADMINER_DEFAULT_PASSWORD=security
+  
+  security-backend:
+    build:
+      context: ./BackEnd/Quiz-Security
+      dockerfile: Dockerfile
+    container_name: Security_Backend
+    depends_on:
+      - db2
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db2:5432/postgres
+    ports:
+      - 8082:8082
+
+#------------------------------------------------------------------------------------------
+
+#Quiz FrontEnd Application------------------------------------------------------------------
+
+  frontend:
+    build:
+      context: ./FrontEnd/Enviro-Quiz
+      dockerfile: Dockerfile
+    container_name: App_Frontend
+    depends_on:
+      - app-backend
+      - security-backend
+    ports:
+      - 4200:4200
+
+#--------------------------------------------------------------------------------------------
